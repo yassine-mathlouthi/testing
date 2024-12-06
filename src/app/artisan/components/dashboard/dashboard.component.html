@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div class="container mt-4">
+    <h3>Artisan / Dashboard</h3>
+    <h2 class="mb-4">Artisan Dashboard</h2>
+
+    <!-- Chart Section -->
+    <div class="mb-4">
+        <canvas baseChart
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [type]="'bar'"
+            [options]="chartOptions">
+        </canvas>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card mt-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4>Confirmed Commands</h4>
+        </div>
+        <div class="card-body">
+            <div *ngIf="verif != 404; else noCommands">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID Commande</th>
+                                <th>Date Commande</th>
+                                <th>Prix Total</th>
+                                <th>Adresse Livraison</th>
+                                <th>Ville</th>
+                                <th>Code Postal</th>
+                                <th>Pays</th>
+                                <th>Numéro Téléphone</th>
+                                <th>Email</th>
+                                <th>Items</th> <!-- Add a new column for items -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let command of data">
+                                <tr>
+                                    <td>{{ command.idCommande }}</td>
+                                    <td>{{ command.dateCommande | date: 'short' }}</td>
+                                    <td>{{ command.prixTotalCommande | currency: 'TND' }}</td>
+                                    <td>{{ command.adresseLivraison }}</td>
+                                    <td>{{ command.ville }}</td>
+                                    <td>{{ command.codePostal }}</td>
+                                    <td>{{ command.pays }}</td>
+                                    <td>{{ command.numeroTelephone }}</td>
+                                    <td>{{ command.email }}</td>
+                                    <td class="container">
+                                        <!-- Display items from panier -->
+                                        
+
+                                        
+                                        <ng-container *ngFor="let item of command.panier.items">
+                                            
+                                          <div class="col card custom-card">
+                                            <img [src]="item.produit.imageProduit" alt="product image" class="img-fluid card-img-top" />
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ item.produit.nomProduit }}</h5>
+                                                <p class="card-text">
+                                                    <span class="mt-2 mb-2"> Quantity: {{ item.quantite }}</span>
+                                                    <br>
+                                                    <span>  {{ item.produit.prix  }} TND</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                                        </ng-container>
+                                      
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Fallback content -->
+            <ng-template #noCommands>
+                <p class="no-commands-message">Aucune commande disponible.</p>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

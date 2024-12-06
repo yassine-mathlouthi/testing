@@ -1,0 +1,29 @@
+.info{
+    font-size: 70px;
+}
+  
+.example-full-width {
+    width: 100%;
+  }
+
+.dialog{
+    padding: 20px;
+}
+.custom-btn {
+    background-color: #e3e3e6;
+    color: #000000;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    margin-top: none;
+  }
+  
+  .custom-btn:hover {
+    background-color: #d7d7dd;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  }
